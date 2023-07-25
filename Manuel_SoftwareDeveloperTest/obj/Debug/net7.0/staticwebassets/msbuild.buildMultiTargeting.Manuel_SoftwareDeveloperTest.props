@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Manuel_SoftwareDeveloperTest.props" />
+</Project>

@@ -1,0 +1,48 @@
+﻿@model EmployeesById
+
+<h1>Employee Details</h1>
+
+@if (Model.data != null)
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Salary</th>
+                    <th>Age</th>
+                    <th>Profile Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.data.id</td>
+                    <td>@Model.data.employee_name</td>
+                    <td>@Model.data.employee_salary</td>
+                    <td>@Model.data.employee_age</td>
+                    <td><img src="@Model.data.profile_image" /></td>
+                </tr>
+            </tbody>
+        </table>
+
+        @using (Html.BeginForm("CalculateSalary", "Employees", FormMethod.Post))
+        {
+            <input type="hidden" name="employeeId" value="@Model.data.id" />
+            <div class="form-group">
+                <label>Select Period:</label>
+                <select name="period" class="form-control">
+                    <option value="3">3 Months</option>
+                    <option value="6">6 Months</option>
+                    <option value="9">9 Months</option>
+                    <option value="12">12 Months</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Calculate Salary</button>
+        }
+    </div>
+}
+else
+{
+    <p>No employee found with the specified ID.</p>
+}
